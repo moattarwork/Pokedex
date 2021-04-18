@@ -36,5 +36,25 @@ namespace Pokedex.WebApi.IntegrationTests
             actual.Habitat.Should().Be(habitat);
             actual.IsLegendary.Should().Be(isLegendary);
         }
+        
+                
+        [Theory]
+        [InlineData("mewtwo", "rare", true, "Created by a scientist after years of horrific gene splicing and dna engineering experiments, it was.")]
+        public async Task Should_GetTranslated_ReturnPokemonWithTranslatedDescription_BasedOnTheCorrectHabitat(
+            string name, string habitat, bool isLegendary, string expectedDescription)
+        {
+            // Arrange
+            var client = _factory.CreateClient();
+
+            // Act
+            var response = await client.GetAsync($"pokemon/translated/{name}");
+
+            // Assert
+            var actual = await response.ValidateAndReadContentAsync<PokemonInfo>();
+            actual.Name.Should().Be(name);
+            actual.Description.Should().Be(expectedDescription);
+            actual.Habitat.Should().Be(habitat);
+            actual.IsLegendary.Should().Be(isLegendary);
+        }
     }
 }
