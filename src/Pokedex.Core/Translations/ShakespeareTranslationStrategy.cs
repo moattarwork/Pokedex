@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Pokedex.Core.Clients.FunTranslation;
 using Pokedex.Core.Domain;
+using Pokedex.Core.Extensions;
 
 namespace Pokedex.Core.Translations
 {
@@ -34,7 +35,7 @@ namespace Pokedex.Core.Translations
             var response = await _funTranslationClient.GetShakespeareTranslationAsync(new FunTranslationRequest
                 {Text = pokemonInfo.Description});
 
-            return response.Contents.Translated;
+            return response.Contents.Translated.NormalizeSpaces();
         }
     }
 }
