@@ -19,6 +19,7 @@ namespace Pokedex.WebApi.IntegrationTests
         [Theory]
         [InlineData("mewtwo", "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments.", "rare", true)]
         [InlineData("ditto", "It can freely recombine its own cellular structure to transform into other life-forms.", "urban", false)]
+        [InlineData("zubat", "Forms colonies in perpetually dark places. Uses ultrasonic waves to identify and approach targets.", "cave", false)]
         public async Task Should_Get_ReturnBasicPokemonInformationCorrectly_WhenTheCorrectNameForPokemonIsProvided(
             string name, string description, string habitat, bool isLegendary)
         {
