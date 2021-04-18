@@ -8,10 +8,13 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Pokedex.Core.Clients;
 using Pokedex.Core.Domain;
+using Pokedex.Core.Extensions;
 
 namespace Pokedex.Core
 {
-    public sealed class PokemonRequestHandler : IRequestHandler<PokemonRequest, OperationResult<PokemonInfo>>
+    public sealed class PokemonRequestHandler : 
+        IRequestHandler<PokemonRequest, OperationResult<PokemonInfo>>
+        
     {
         private readonly ILogger<PokemonRequestHandler> _logger;
         private readonly IPokeApiClient _pokeClient;
@@ -29,8 +32,7 @@ namespace Pokedex.Core
 
             try
             {
-                var pokemonSpecies = await _pokeClient.GetPokemonSpeciesAsync(request.PokemonName.ToLower());
-                var pokemon = ToPokemonInfo(pokemonSpecies);
+                var pokemon = (await _pokeClient.GetPokemonSpeciesAsync(request.PokemonName.ToLower())).ToPokemonInfo();
 
                 return OperationResult<PokemonInfo>.Success(pokemon);
             }
@@ -44,19 +46,47 @@ namespace Pokedex.Core
                         : OperationErrorReason.GenerricError, message);
             }
         }
+    }    
+    
+    public sealed class PokemonTranslatedRequestHandler : 
+        IRequestHandler<PokemonTranslatedRequest, OperationResult<PokemonInfo>>
         
-        private PokemonInfo ToPokemonInfo(ExtendedPokemonSpecies pokemonSpecies)
-        {
-            if (pokemonSpecies == null) throw new ArgumentNullException(nameof(pokemonSpecies));
+    {
+        private readonly ILogger<PokemonTranslatedRequestHandler> _logger;
+        private readonly IPokeApiClient _pokeClient;
 
-            return new PokemonInfo
+        public PokemonTranslatedRequestHandler(IPokeApiClient pokeClient, ILogger<PokemonTranslatedRequestHandler> logger)
+        {
+            _pokeClient = pokeClient ?? throw new ArgumentNullException(nameof(pokeClient));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
+        public async Task<OperationResult<PokemonInfo>> Handle(PokemonTranslatedRequest request,
+            CancellationToken cancellationToken)
+        {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
+            try
             {
-                Name = pokemonSpecies.Name,
-                Description =
-                    pokemonSpecies.FlavorTextEntries?.FirstOrDefault(m => m.Language.Name == "en")?.FlavorText.RemoveLineBreaks(),
-                Habitat = pokemonSpecies.Habitat?.Name,
-                IsLegendary = pokemonSpecies.IsLegendary
-            };
+                var pokemon = (await _pokeClient.GetPokemonSpeciesAsync(request.PokemonName.ToLower())).ToPokemonInfo();
+
+                var translatedPokemon = pokemon with
+                {
+                    Description =
+                    "Created by a scientist after years of horrific gene splicing and dna engineering experiments, it was."
+                };
+
+                return OperationResult<PokemonInfo>.Success(translatedPokemon);
+            }
+            catch (HttpRequestException e)
+            {
+                var message = $"Error in loading pokemon {request.PokemonName} from API";
+
+                _logger.LogError(message, e);
+                return OperationResult<PokemonInfo>.Error(e.StatusCode == HttpStatusCode.NotFound
+                        ? OperationErrorReason.ResourceNotFound
+                        : OperationErrorReason.GenerricError, message);
+            }
         }
     }
 }

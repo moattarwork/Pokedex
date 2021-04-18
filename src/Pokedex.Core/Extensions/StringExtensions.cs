@@ -1,5 +1,3 @@
-using System;
-
 namespace Pokedex.Core
 {
     public static class StringExtensions

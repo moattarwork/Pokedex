@@ -24,6 +24,13 @@ namespace Pokedex.WebApi.Controllers
         {
             var result = await _mediator.Send(new PokemonRequest(name));
             return result.ToActionResult();
+        } 
+        
+        [HttpGet("translated/{name}")]
+        public async Task<ActionResult<PokemonInfo>> GetTranslated(string name)
+        {
+            var result = await _mediator.Send(new PokemonTranslatedRequest(name));
+            return result.ToActionResult();
         }
     }
 }
