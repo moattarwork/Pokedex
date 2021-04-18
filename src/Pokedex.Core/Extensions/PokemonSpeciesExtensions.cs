@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Pokedex.Core.Clients;
+using Pokedex.Core.Clients.Poke;
 using Pokedex.Core.Domain;
 
 namespace Pokedex.Core.Extensions

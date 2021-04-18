@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using Pokedex.Core.Clients;
+using Pokedex.Core.Clients.Poke;
 using Pokedex.Core.Domain;
 using Xunit;
 

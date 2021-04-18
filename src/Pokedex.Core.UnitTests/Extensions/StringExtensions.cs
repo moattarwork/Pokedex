@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Pokedex.Core.Extensions;
 using Xunit;
 
 namespace Pokedex.Core.UnitTests.Extensions

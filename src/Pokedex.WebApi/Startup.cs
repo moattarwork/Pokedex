@@ -8,7 +8,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PokeApiNet;
 using Pokedex.Core.Clients;
+using Pokedex.Core.Clients.FunTranslation;
+using Pokedex.Core.Clients.Poke;
 using Pokedex.Core.Domain;
+using Pokedex.Core.Translations;
 using Pokedex.WebApi.Extensions;
 using Pokedex.WebApi.Options;
 using Refit;
@@ -35,7 +38,10 @@ namespace Pokedex.WebApi
 
             services.AddMediatR(typeof(PokemonInfo));
             services.AddSingleton(new PokeApiClient());
+            services.AddTransient<ITranslationStrategy, YodaTranslationStrategy>();
+            services.AddTransient<ITranslationStrategy, ShakespeareTranslationStrategy>();
             services.AddClient<IPokeApiClient>(c => c.PokemonApiUrl);
+            services.AddClient<IFunTranslationClient>(c => c.FunTranslationApiUrl);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

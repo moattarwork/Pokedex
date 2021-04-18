@@ -40,6 +40,8 @@ namespace Pokedex.WebApi.IntegrationTests
                 
         [Theory]
         [InlineData("mewtwo", "rare", true, "Created by a scientist after years of horrific gene splicing and dna engineering experiments, it was.")]
+        [InlineData("ditto", "urban", false, "'t can freely recombine its own cellular structure to transform into other life-forms.")]
+        [InlineData("zubat", "cave", false, "Forms colonies in perpetually dark places.Ultrasonic waves to identify and approach targets, uses.")]
         public async Task Should_GetTranslated_ReturnPokemonWithTranslatedDescription_BasedOnTheCorrectHabitat(
             string name, string habitat, bool isLegendary, string expectedDescription)
         {

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Refit;
 
-namespace Pokedex.Core.Clients
+namespace Pokedex.Core.Clients.Poke
 {
     public interface IPokeApiClient
     {

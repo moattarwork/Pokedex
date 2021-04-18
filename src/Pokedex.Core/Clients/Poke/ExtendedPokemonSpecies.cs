@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using PokeApiNet;
 
-namespace Pokedex.Core.Clients
+namespace Pokedex.Core.Clients.Poke
 {
     
     // NOTE: The original class is missing the property but it is coming back from the API

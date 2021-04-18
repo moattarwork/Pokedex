@@ -1,4 +1,4 @@
-namespace Pokedex.Core
+namespace Pokedex.Core.Extensions
 {
     public static class StringExtensions
     {

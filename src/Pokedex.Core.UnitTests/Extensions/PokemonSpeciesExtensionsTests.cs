@@ -2,6 +2,7 @@ using System.Linq;
 using AutoFixture;
 using FluentAssertions;
 using Pokedex.Core.Clients;
+using Pokedex.Core.Clients.Poke;
 using Pokedex.Core.Extensions;
 using Xunit;
 
