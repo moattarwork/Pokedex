@@ -49,3 +49,9 @@ docker-compose up -d
 ```
 **NOTE: to be able to run the application in the docker, the docker desktop must be available on your machine. You can download the docker desktop from https://www.docker.com/products/docker-desktop** 
 
+## Production considerations
+- Enabling resiliency on external API calls (Retry, CircuitBreaker, etc) using libraries such as Polly
+- Generic poke info is pretty static and it worth to enable a proper caching solution on the API
+- Extended logging & enabling telemetry/monitoring
+-  
+- 
