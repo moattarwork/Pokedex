@@ -5,7 +5,7 @@ using Pokedex.Core.Domain;
 
 namespace Pokedex.Core.Extensions
 {
-    public static class ExtendedPokemonSpeciesExtensions
+    public static class PokemonSpeciesExtensions
     {
         public static PokemonInfo ToPokemonInfo(this ExtendedPokemonSpecies pokemonSpecies)
         {
