@@ -1,6 +1,6 @@
 namespace Pokedex.Core.Clients.FunTranslation
 {
-    public record FunTranslationContent
+    public sealed record FunTranslationContent
     {
         public string Translated { get; init; }
         public string Text { get; init; }

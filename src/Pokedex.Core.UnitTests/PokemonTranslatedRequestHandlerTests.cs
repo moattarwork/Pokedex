@@ -131,7 +131,7 @@ namespace Pokedex.Core.UnitTests
             // Assert
             actual.Failed.Should().BeTrue();
             actual.Result.Should().BeNull();
-            actual.ErrorReason.Should().Be(OperationErrorReason.GenerricError);
+            actual.ErrorReason.Should().Be(OperationErrorReason.GenericError);
             actual.ErrorMessage.Should().Be($"Error in loading pokemon name from API");
         }  
     }

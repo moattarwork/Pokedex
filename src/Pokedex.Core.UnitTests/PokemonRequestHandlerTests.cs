@@ -7,7 +7,6 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
-using Pokedex.Core.Clients;
 using Pokedex.Core.Clients.Poke;
 using Pokedex.Core.Domain;
 using Xunit;
@@ -83,7 +82,7 @@ namespace Pokedex.Core.UnitTests
             // Assert
             actual.Failed.Should().BeTrue();
             actual.Result.Should().BeNull();
-            actual.ErrorReason.Should().Be(OperationErrorReason.GenerricError);
+            actual.ErrorReason.Should().Be(OperationErrorReason.GenericError);
             actual.ErrorMessage.Should().Be($"Error in loading pokemon name from API");
         }  
     }

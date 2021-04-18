@@ -7,7 +7,7 @@ using Pokedex.Core.Extensions;
 
 namespace Pokedex.Core.Translations
 {
-    public class YodaTranslationStrategy : ITranslationStrategy
+    public sealed class YodaTranslationStrategy : ITranslationStrategy
     {
         private readonly IFunTranslationClient _funTranslationClient;
         private readonly ILogger<YodaTranslationStrategy> _logger;

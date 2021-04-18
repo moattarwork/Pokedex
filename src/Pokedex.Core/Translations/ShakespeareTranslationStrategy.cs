@@ -7,7 +7,7 @@ using Pokedex.Core.Extensions;
 
 namespace Pokedex.Core.Translations
 {
-    public class ShakespeareTranslationStrategy : ITranslationStrategy
+    public sealed class ShakespeareTranslationStrategy : ITranslationStrategy
     {
         private readonly IFunTranslationClient _funTranslationClient;
         private readonly ILogger<ShakespeareTranslationStrategy> _logger;

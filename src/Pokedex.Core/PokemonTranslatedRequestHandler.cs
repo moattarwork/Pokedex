@@ -60,7 +60,7 @@ namespace Pokedex.Core
                 _logger.LogError(message, e);
                 return OperationResult<PokemonInfo>.Error(e.StatusCode == HttpStatusCode.NotFound
                     ? OperationErrorReason.ResourceNotFound
-                    : OperationErrorReason.GenerricError, message);
+                    : OperationErrorReason.GenericError, message);
             }
         }
 
