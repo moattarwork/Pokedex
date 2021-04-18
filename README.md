@@ -53,5 +53,4 @@ docker-compose up -d
 - Enabling resiliency on external API calls (Retry, CircuitBreaker, etc) using libraries such as Polly
 - Generic poke info is pretty static and it worth to enable a proper caching solution on the API
 - Extended logging & enabling telemetry/monitoring
--  
-- 
+
