@@ -31,9 +31,13 @@ namespace Pokedex.Core
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
+            _logger.LogInformation($"Process translate request for Pokemon {request.PokemonName}");
+            
             try
             {
                 var pokemon = (await _pokeClient.GetPokemonSpeciesAsync(request.PokemonName.ToLower())).ToPokemonInfo();
+                
+                _logger.LogInformation($"Pokemon {request.PokemonName} information has retrived successfully");
 
                 return OperationResult<PokemonInfo>.Success(pokemon);
             }

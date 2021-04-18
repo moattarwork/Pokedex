@@ -28,6 +28,8 @@ namespace Pokedex.Core.Translations
         {
             if (CanTranslate(pokemonInfo) == false)
                 return pokemonInfo.Description;
+            
+            _logger.LogInformation($"Translating Pokemon {pokemonInfo.Name} description. Translation Mode: Yoda");
 
             var response = await _funTranslationClient.GetYodaTranslationAsync(new FunTranslationRequest
                 {Text = pokemonInfo.Description});

@@ -35,15 +35,22 @@ namespace Pokedex.Core
             CancellationToken cancellationToken)
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
+            
+            _logger.LogInformation($"Process translate request for Pokemon {request.PokemonName}");
 
             try
             {
                 var pokemon = (await _pokeClient.GetPokemonSpeciesAsync(request.PokemonName.ToLower())).ToPokemonInfo();
+                
+                _logger.LogInformation($"Pokemon {request.PokemonName} information has retrived successfully");
+                
                 var translatedPokemon = pokemon with
                 {
                     Description = await TranslateAsync(pokemon)
                 };
 
+                _logger.LogInformation($"Pokemon {request.PokemonName} description is translated successfully");
+                
                 return OperationResult<PokemonInfo>.Success(translatedPokemon);
             }
             catch (HttpRequestException e)
