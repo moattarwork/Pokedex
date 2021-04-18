@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.Core", "Pokedex.Core\Pokedex.Core.csproj", "{A761BF53-F9AE-419D-8085-46FD12D85606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.WebApi", "Pokedex.WebApi\Pokedex.WebApi.csproj", "{5F7A6334-1CD6-419C-9EE7-F58CA69EE6E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.Core.UnitTests", "Pokedex.Core.UnitTests\Pokedex.Core.UnitTests.csproj", "{8EF9A402-2595-4B3C-A216-F453B12FFEFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pokedex.WebApi.IntegrationTests", "Pokedex.WebApi.IntegrationTests\Pokedex.WebApi.IntegrationTests.csproj", "{8D483489-6DB1-4333-8137-CAC695BA6E06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A761BF53-F9AE-419D-8085-46FD12D85606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A761BF53-F9AE-419D-8085-46FD12D85606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A761BF53-F9AE-419D-8085-46FD12D85606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A761BF53-F9AE-419D-8085-46FD12D85606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F7A6334-1CD6-419C-9EE7-F58CA69EE6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7A6334-1CD6-419C-9EE7-F58CA69EE6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F7A6334-1CD6-419C-9EE7-F58CA69EE6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F7A6334-1CD6-419C-9EE7-F58CA69EE6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF9A402-2595-4B3C-A216-F453B12FFEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF9A402-2595-4B3C-A216-F453B12FFEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF9A402-2595-4B3C-A216-F453B12FFEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF9A402-2595-4B3C-A216-F453B12FFEFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D483489-6DB1-4333-8137-CAC695BA6E06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D483489-6DB1-4333-8137-CAC695BA6E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D483489-6DB1-4333-8137-CAC695BA6E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D483489-6DB1-4333-8137-CAC695BA6E06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
