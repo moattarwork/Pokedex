@@ -1,6 +1,6 @@
 namespace Pokedex.Core.Domain
 {
-    public record Pokemon
+    public record PokemonInfo
     {
         public string Name { get; init; }
         public string Description { get; init; }

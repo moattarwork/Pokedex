@@ -1,17 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PokeApiNet;
+using Pokedex.Core.Clients;
+using Pokedex.Core.Domain;
 using Pokedex.WebApi.Extensions;
+using Pokedex.WebApi.Options;
+using Refit;
 
 namespace Pokedex.WebApi
 {
@@ -32,6 +32,10 @@ namespace Pokedex.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Pokedex.WebApi", Version = "v1"});
             });
+
+            services.AddMediatR(typeof(PokemonInfo));
+            services.AddSingleton(new PokeApiClient());
+            services.AddClient<IPokeApiClient>(c => c.PokemonApiUrl);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

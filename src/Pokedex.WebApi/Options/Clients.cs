@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Pokedex.WebApi
+namespace Pokedex.WebApi.Options
 {
     public sealed record Clients
     {

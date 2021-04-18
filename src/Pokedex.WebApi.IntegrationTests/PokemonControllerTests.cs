@@ -17,7 +17,8 @@ namespace Pokedex.WebApi.IntegrationTests
         }
         
         [Theory]
-        [InlineData("mewtwo", "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments", "rare", true)]
+        [InlineData("mewtwo", "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments.", "rare", true)]
+        [InlineData("ditto", "It can freely recombine its own cellular structure to transform into other life-forms.", "urban", false)]
         public async Task Should_Get_ReturnBasicPokemonInformationCorrectly_WhenTheCorrectNameForPokemonIsProvided(
             string name, string description, string habitat, bool isLegendary)
         {
@@ -28,7 +29,7 @@ namespace Pokedex.WebApi.IntegrationTests
             var response = await client.GetAsync($"pokemon/{name}");
 
             // Assert
-            var actual = await response.ValidateAndReadContentAsync<Pokemon>();
+            var actual = await response.ValidateAndReadContentAsync<PokemonInfo>();
             actual.Name.Should().Be(name);
             actual.Description.Should().Be(description);
             actual.Habitat.Should().Be(habitat);

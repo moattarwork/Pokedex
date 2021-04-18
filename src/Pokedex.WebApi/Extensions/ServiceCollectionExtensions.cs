@@ -1,6 +1,10 @@
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using Pokedex.Core.Clients;
+using Pokedex.WebApi.Options;
+using Refit;
 
 namespace Pokedex.WebApi.Extensions
 {
@@ -15,6 +19,23 @@ namespace Pokedex.WebApi.Extensions
             services.AddOptions<TOption>()
                 .Bind(configuration.GetSection(typeof(TOption).Name))
                 .ValidateDataAnnotations();
+
+            return services;
+        }
+
+        public static IServiceCollection AddClient<TClient>(this IServiceCollection services, Func<Clients, string> urlProvider)
+        {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+            if (urlProvider == null) throw new ArgumentNullException(nameof(urlProvider));
+            
+            services.AddRefitClient<IPokeApiClient>(c =>new RefitSettings(new NewtonsoftJsonContentSerializer()))
+                .ConfigureHttpClient((sp,c) =>
+                {
+                    var clients = sp.GetRequiredService<IOptions<Clients>>().Value;
+                    var url = urlProvider.Invoke(clients);
+                    
+                    c.BaseAddress = new Uri(url);
+                });
 
             return services;
         }

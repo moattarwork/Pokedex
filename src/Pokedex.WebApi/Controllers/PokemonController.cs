@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Pokedex.Core;
 using Pokedex.Core.Domain;
+using Pokedex.WebApi.Extensions;
 
 namespace Pokedex.WebApi.Controllers
 {
@@ -10,18 +12,18 @@ namespace Pokedex.WebApi.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        [HttpGet("{name}")]
-        public ActionResult<Pokemon> Get(string name)
+        private readonly IMediator _mediator;
+
+        public PokemonController(IMediator mediator)
         {
-            var pokemon = new Pokemon
-            {
-                Name = name,
-                Description =
-                    "It was created by a scientist after years of horrific gene splicing and DNA engineering experiments",
-                Habitat = "rare",
-                IsLegendary = true
-            };
-            return Ok(pokemon);
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+        
+        [HttpGet("{name}")]
+        public async Task<ActionResult<PokemonInfo>> Get(string name)
+        {
+            var result = await _mediator.Send(new PokemonRequest(name));
+            return result.ToActionResult();
         }
     }
 }
